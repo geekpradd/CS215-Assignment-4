@@ -1,0 +1,9 @@
+function dimensions = highest_dimensions(data, n)
+    covariance = data*data'/size(data, 2);
+    [V, D] = eig(covariance);
+    
+    [d, ind] = sort(diag(D), 'descend');
+    
+    DS = D
+    
+end
