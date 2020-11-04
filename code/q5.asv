@@ -33,12 +33,8 @@ for d=0:9
    reconstructed = bases*reduced_data;
    % To reconstruct we multiply by bases (explained in the report)
    % Essentially this would ensure that the jth column in reconstructed is
-   % the linear combination of the bases with coefficietnts =  inner products 
-   % with the jth sample.
+   % the linear combination of t
    
-   
-   % Plot below. We reshape the images after adding back the mean vector
-   % and then plot
    figure(d+1);
    axis equal;
    subplot(1, 2, 1);

@@ -1,11 +1,13 @@
-function [dimensions, bases] = highest_dimensions(data, n)
+function [bases, diagonal] = highest_dimensions(data, n)
     covariance = data*data'/size(data, 2);
     [V, D] = eig(covariance);
     
     [~, ind] = sort(diag(D), 'descend');
     
-    dimensions = ind(1:n);
     VS = V(:, ind);
-    bases = V(:, 1: n);
+    DS = D(ind, ind);
+    bases = VS(:, 1:n);
+    
+    diagonal = DS(1:n, 1:n);
     
 end
