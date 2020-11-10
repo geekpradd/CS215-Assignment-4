@@ -1,4 +1,6 @@
 function [bases, eigenvalues] = highest_dimensions(data, n)
+    mean = sum(data,2)/size(data,2);
+    data = data - mean;
     covariance = data*data'/size(data, 2);
     [V, D] = eig(covariance);
     

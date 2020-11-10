@@ -13,6 +13,7 @@ for d=0:9
    digits = digits - mean_vector;
    % mean subtraction (needed for covariance)
    
+   %FIRST PART
    [bases, diagonal] = highest_dimensions(digits, 84);
    % the function will give the 84 eigenvectors of the covariance matrix 
    % that have the highest eigenvalues
@@ -29,7 +30,9 @@ for d=0:9
    % Thus in reduced data the jth column contains the 84 inner products of
    % the jth sample with the eigenvectors which is our compressed
    % represention.
+   % this gives the representation of image in 84 coordinates
    
+   %SECOND PART
    reconstructed = bases*reduced_data;
    % To reconstruct we multiply by bases (explained in the report)
    % Essentially this would ensure that the jth column in reconstructed is
