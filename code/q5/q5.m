@@ -28,7 +28,7 @@ for d=0:9
    % eigenvector with the jth sample (the jth column in digits).
    % Thus in reduced data the jth column contains the 84 inner products of
    % the jth sample with the eigenvectors which is our compressed
-   % represnation.
+   % represention.
    
    reconstructed = bases*reduced_data;
    % To reconstruct we multiply by bases (explained in the report)
