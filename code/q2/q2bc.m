@@ -8,7 +8,7 @@ A = V*(D^0.5); % as explained in report this is one possible A
 ns = [10 10^2 10^3 10^4 10^5];
 
 % the first coordinate represents each trial and the second coordinate
-% represents the N we are considerinf
+% represents the N we are considering
 mean_boxplot_matrix = zeros(100, length(ns)); 
 covariance_boxplot_matrix = zeros(100, length(ns));
 
@@ -35,7 +35,7 @@ for k = 1:length(ns)
        % in the above line we are using the vectorised implementation for 
        % getting sample covariance. sample is 2xN, sample' is Nx2.
        % Multiplying these two matrices and dividing by N gives the
-       % covariance (can be seen by multiplying them out on paper)
+       % covariance (can be seen by multiplying them explicitly)
       
        
        error = norm(C - current_covariance, 'fro')/norm(C, 'fro');
