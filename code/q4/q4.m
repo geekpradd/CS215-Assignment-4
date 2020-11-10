@@ -39,10 +39,10 @@ for d=0:9
    
    %show the three images mu, mu-sqrt(l)v, mu + sqrt(l)v
    figure;
-   subplot(1,3,1); imagesc(reshape(mean_vector - sqrt(lambda1)*v1,[28 28]));
+   subplot(1,3,1); imshow(reshape(mean_vector - sqrt(lambda1)*v1,[28 28]));
    title("\mu - sqrt(\lambda_1)*v_1 for " + string(d))
-   subplot(1,3,2); imagesc(reshape(mean_vector,[28 28]));
+   subplot(1,3,2); imshow(reshape(mean_vector,[28 28]));
    title("\mu for " + string(d))
-   subplot(1,3,3); imagesc(reshape(mean_vector + sqrt(lambda1)*v1,[28 28]));
+   subplot(1,3,3); imshow(reshape(mean_vector + sqrt(lambda1)*v1,[28 28]));
    title("\mu + sqrt(\lambda_1)*v_1 for " + string(d))
 end

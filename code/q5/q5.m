@@ -42,10 +42,10 @@ for d=0:9
    figure;
    axis equal;
    subplot(1, 2, 1);
-   imagesc(reshape(mean_vector + digits(:, 2), [28 28]));
+   imshow(reshape(mean_vector + digits(:, 2), [28 28]));
    title(["Original Image for Digit " num2str(d)]);
    
    subplot(1, 2, 2);
-   imagesc(reshape(mean_vector + reconstructed(:, 2), [28 28]));
+   imshow(reshape(mean_vector + reconstructed(:, 2), [28 28]));
    title(["Reconstructed Image for Digit " num2str(d)]);
 end

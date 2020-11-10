@@ -54,9 +54,9 @@ re_I = u*weights+me; %the reconstruction is simply weights * eigen_vector + mean
 % Plotting the reconstructed images and original images
 for i=1:num_images
     figure
-    subplot(1,2,1), imagesc(rescale(reshape(I(:,i)+me,[80, 80,3]))) %original image, We subtracted mean so have to add back
+    subplot(1,2,1), imshow(rescale(reshape(I(:,i)+me,[80, 80,3]))) %original image, We subtracted mean so have to add back
     title("Original Image for "+num2str(i) + " image")
-    subplot(1,2,2), imagesc(rescale(reshape(re_I(:,i),[80, 80,3]))) %the reconstructed images
+    subplot(1,2,2), imshow(rescale(reshape(re_I(:,i),[80, 80,3]))) %the reconstructed images
     title("Reconstructed Image for "+num2str(i) + " image")
 end
 
@@ -73,6 +73,6 @@ for i=1:3
     % construct the image of fruit from the weights
     new_image = u*w+me;
     %display the image
-    figure, imagesc(rescale(reshape(new_image,[80, 80,3]))) 
+    figure, imshow(rescale(reshape(new_image,[80, 80,3]))) 
     title("randomly generated image "+num2str(i))
 end
