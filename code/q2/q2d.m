@@ -1,7 +1,6 @@
 rng(5);
 C = [1.6250 -1.9486; -1.9486 3.8750];
 MU = [1 2]';
-axis equal;
 [V,D] = eig(C);
 
 A = V*(D^0.5);
@@ -31,7 +30,7 @@ for k = 1:length(ns)
     % of the sample covariance which we will need to draw the directions of
     % maximal variance (along the eigenvector)
     
-    figure(k);
+    figure;
     
     sample = sample + mean_vector;
     % adding back the mean_vector to get the original sample back

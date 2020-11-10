@@ -39,7 +39,7 @@ for d=0:9
    
    % Plot below. We reshape the images after adding back the mean vector
    % and then plot
-   figure(d+1);
+   figure;
    axis equal;
    subplot(1, 2, 1);
    imagesc(reshape(mean_vector + digits(:, 2), [28 28]));

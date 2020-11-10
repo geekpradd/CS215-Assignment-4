@@ -1,7 +1,6 @@
 rng(5);
 C = [1.6250 -1.9486; -1.9486 3.8750];
 MU = [1 2]';
-axis equal;
 [V,D] = eig(C); % get eigenvectors and eigenvalues
 
 A = V*(D^0.5); % as explained in report this is one possible A
@@ -46,12 +45,14 @@ for k = 1:length(ns)
 end
 
 % below we plot using boxplot
-figure(1);
+figure;
+axis equal;
 boxplot(mean_boxplot_matrix);
 xlabel("log N");
 ylabel("Relative error between ML estimate and true mean");
 
-figure(2);
+figure;
+axis equal;
 boxplot(covariance_boxplot_matrix);
 xlabel("log N");
 ylabel("Relative error between ML estimate and true covariance");
