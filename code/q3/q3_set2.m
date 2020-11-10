@@ -15,7 +15,9 @@ c = [x'*x , x'*y ; x'*y , y'*y] / size(x,1);
 [V, d] = eig(c);
 d = diag(d); %converrting the diagonal matrix into a vector
 
-% Getting the direction of maximum variance(as there are only two eigen values we can use a simple if statement instead of argmax)
+% Getting the direction of maximum variance
+%(as there are only two eigen values we can use a simple if statement 
+% instead of max or sort)
 if d(1) > d(2)
     u =  V(:,1);
 else
@@ -27,5 +29,6 @@ line(xlim, my+u(2)*(xlim-mx)/u(1) ,'LineWidth',3,'Color','red' );
 title("point set 2");
 hold off
 
-% Normalised mean square error
-disp(sum((y - u(2)*x/u(1)).^2)/(size(x,1)*my*my))
+%Normalised mean square error
+disp("Normalised mean square error: " + ...
+num2str(sum((y - u(2)*x/u(1)).^2)/(size(x,1)*my*my)))
