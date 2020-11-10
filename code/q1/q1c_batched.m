@@ -1,8 +1,10 @@
+format long
 rng(4);
 % values of N to be tested on
-N = [10 10^2 10^3 10^4 10^5 10^6 10^7 10^8];
+N = [10 10^2 10^3 10^4 10^5 10^6 10^7 10^8, 10^9];
 % number of samples to be processed simultaneously
 batchSize = 1000000;
+
 % Loop through N
 for i=1:length(N)
    % get the ith value in N
@@ -22,6 +24,8 @@ for i=1:length(N)
        count = count + sum(sample(:,1).^2 + sample(:, 2).^2 <= 1);  
    end 
    % get the estimated value of pi
-   pi = single(4*count/n);
-   disp("Estimate at n = " + string(n) + " is " + string(pi));
+   pi = double(4*count/n);
+   % change the format to dispaly value to higher precision, the digit
+   % after '.' signidfies the number of digits after decimal
+   disp("Estimate at n = " + string(n) + " is " + num2str(pi,'%10.8f'));
 end

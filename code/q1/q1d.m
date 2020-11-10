@@ -1,4 +1,4 @@
-% NOTE: Use the batched version if this code is killed on execution. Since
+% NOTE: Use the batched version(q1d_batched.m) if this code is killed on execution. Since
 % the samples are drawn simultaneously, memory used may be a bit high.
 
 rng(4);
@@ -17,23 +17,26 @@ while low<high-1
    m = floor((low+high)/2);
    % sampling the points. There are k experiments, and for each experiment
    % m points. SO, the sample is of size k*m*2.
-   total_sample = 2*rand(k,m,2)-1;
+   total_sample = single(2*rand(k,m,2)-1);
    % for each experiment, calculating how many samples are within a
    % radius of 1 from origin
-   % sample(:,:,1).^2 + sample(:,:,2).^2 finds the distance of point
-   % from origin and then we compare it with 1. y stores a 1 if the point
+   % y = sample(:,:,1).^2 + sample(:,:,2).^2 finds the distance of point
+   % from origin and then we compare it with 1. It stores a 1 if the point
    % lies inside the circle otherwise 0.
-   y = total_sample(:,:,1).^2 + total_sample(:,:,2).^2 <= 1;
-   % for each experiment, calculate the estimate of pi. sum(y,2) is total
-   % number of points inside circle. So, probability is sum(y,2)/m. 
-   pi_e = single(4*sum(y,2)/m);
+   % for each experiment, calculate the estimate of pi. sum(y<=1,2) is total
+   % number of points inside circle. So, probability is sum(y<=1,2)/m. 
+   pi_e = single(4*sum(single(total_sample(:,:,1).^2 + total_sample(:,:,2).^2 <= 1),2)/m);
    % probability that the estimate is in range of 0.01 from true value 
    p = sum(abs(pi_e-pi) <= 0.01,"all")/k;
    % applying the recursive step for binary search
-   if p >= 0.95
-        high = m;
+   if p==0.95
+       break;
    else
-       low = m;
+       if p > 0.95
+        high = m;
+       else
+        low = m;
+       end
    end
    % applying the recursive step for binary search
    disp(string(m)+": "+string(p))
