@@ -19,4 +19,4 @@ while low<high-1
    disp("--------------------")
 end
 toc
-disp(m);
+disp("found value of m: " + num2str(m));
