@@ -28,22 +28,22 @@ co = I*I' / size(I,2);
 
 %Show the images of mean and the eigenvectors
 figure
-subplot(1,5,1),imagesc(rescale(reshape(me,[80, 80, 3])))
+subplot(1,5,1),imshow(rescale(reshape(me,[80, 80, 3])))
 title("mean of all fruit images")
-subplot(1,5,2), imagesc(rescale(reshape(u(:,1),[80, 80, 3])))
+subplot(1,5,2), imshow(rescale(reshape(u(:,1),[80, 80, 3])))
 title("1^{st} eigen vector")
-subplot(1,5,3), imagesc(rescale(reshape(u(:,2),[80, 80, 3])))
+subplot(1,5,3), imshow(rescale(reshape(u(:,2),[80, 80, 3])))
 title("2^{nd} eigen vector")
-subplot(1,5,4), imagesc(rescale(reshape(u(:,3),[80, 80, 3])))
+subplot(1,5,4), imshow(rescale(reshape(u(:,3),[80, 80, 3])))
 title("3^{rd} eigen vector")
-subplot(1,5,5), imagesc(rescale(reshape(u(:,4),[80, 80, 3])))
+subplot(1,5,5), imshow(rescale(reshape(u(:,4),[80, 80, 3])))
 title("4^{th} eigen vector")
 
 
 % Plot of first ten eigen-values
-D = eigs(co,10); %calculate the first 10 eigen values
+D = eigs(co,10); %calculate the first 10 eigen values, returns in sorted order only
 figure %plot 
-plot(D)
+plot(D,"Marker",".","MarkerSize",15)
 title("first 10 eigenvalues")
 
 
@@ -64,15 +64,16 @@ end
 %Random Fruits from normal distribution
 %seed the random number generator
 rng(4)
+figure
 for i=1:3
-    % get weights for the four eigenvectors.
-    %To notice difference, weights must be comparable to the norm of mean
-    % So it is multiplied by the norm of mean
-    % (randn + 0.1) is used to increase the scale a bit
+%     % get weights for the four eigenvectors.
+%     %To notice difference, weights must be comparable to the norm of mean
+%     % So it is multiplied by the norm of mean
+%     % (randn + 0.1) is used to increase the scale a bit
     w = randn(4,1)*(rand+0.1)*norm(me);
-    % construct the image of fruit from the weights
+%     % construct the image of fruit from the weights
     new_image = u*w+me;
-    %display the image
-    figure, imshow(rescale(reshape(new_image,[80, 80,3]))) 
+%     %display the image
+    subplot(1,3,i), imshow(rescale(reshape(new_image,[80, 80,3]))) 
     title("randomly generated image "+num2str(i))
 end
