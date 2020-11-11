@@ -12,31 +12,23 @@ for d=0:9
    % mean is found by summing the column vectors
    digits = digits - mean_vector;
    % mean subtraction (needed for covariance)
+   % technically we can pass digits directly but since we will reconstruct 
+   % the data we are mean subtracting here only
    
    %FIRST PART
-   [bases, diagonal] = highest_dimensions(digits, 84);
-   % the function will give the 84 eigenvectors of the covariance matrix 
-   % that have the highest eigenvalues
-   % Note that bases are column vectors which have been stacked column wise
-   % in the bases matrix
-   % diagonal is a diagonal matrix (84x84) whose diagonal values are the
-   % corresponding eigenvalues
-   
-   reduced_data = bases'*digits; % in form of coefficients along bases
-   % the above vectorised implementation gives us the compressed data.
-   % This is because after multiplying as above the value of R_{ij} where R
-   % is the reduced data matrix, is the inner product of the ith
-   % eigenvector with the jth sample (the jth column in digits).
-   % Thus in reduced data the jth column contains the 84 inner products of
-   % the jth sample with the eigenvectors which is our compressed
-   % represention.
-   % this gives the representation of image in 84 coordinates
+   [reduced_data, basis] = rerepresent_digits(digits, 84);
+   % the function rerepresent_digits(digits, d) defined in
+   % rerepresent_digits.m reduces the digits dataset into d dimensions
+   % and returns it in reduced_data
+   % we also want to know the directions (basis vectors) along which we reduced
+   % the data and this is given in the basis matrix stacked column wise
+   % Details of this is in the function
    
    %SECOND PART
-   reconstructed = bases*reduced_data;
+   reconstructed = basis*reduced_data;
    % To reconstruct we multiply by bases (explained in the report)
    % Essentially this would ensure that the jth column in reconstructed is
-   % the linear combination of the bases with coefficietnts =  inner products 
+   % the linear combination of the bases with coefficients =  inner products 
    % with the jth sample.
    
    

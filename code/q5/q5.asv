@@ -13,6 +13,10 @@ for d=0:9
    digits = digits - mean_vector;
    % mean subtraction (needed for covariance)
    
+   %FIRST PART
+   reduced_data = rerepresent_digits(digits, 84);
+   % t
+   
    [bases, diagonal] = highest_dimensions(digits, 84);
    % the function will give the 84 eigenvectors of the covariance matrix 
    % that have the highest eigenvalues
@@ -28,20 +32,26 @@ for d=0:9
    % eigenvector with the jth sample (the jth column in digits).
    % Thus in reduced data the jth column contains the 84 inner products of
    % the jth sample with the eigenvectors which is our compressed
-   % represnation.
+   % represention.
+   % this gives the representation of image in 84 coordinates
    
+   %SECOND PART
    reconstructed = bases*reduced_data;
    % To reconstruct we multiply by bases (explained in the report)
    % Essentially this would ensure that the jth column in reconstructed is
-   % the linear combination of t
+   % the linear combination of the bases with coefficietnts =  inner products 
+   % with the jth sample.
    
-   figure(d+1);
+   
+   % Plot below. We reshape the images after adding back the mean vector
+   % and then plot
+   figure;
    axis equal;
    subplot(1, 2, 1);
-   imagesc(reshape(mean_vector + digits(:, 2), [28 28]));
+   imshow(reshape(mean_vector + digits(:, 2), [28 28]));
    title(["Original Image for Digit " num2str(d)]);
    
    subplot(1, 2, 2);
-   imagesc(reshape(mean_vector + reconstructed(:, 2), [28 28]));
+   imshow(reshape(mean_vector + reconstructed(:, 2), [28 28]));
    title(["Reconstructed Image for Digit " num2str(d)]);
 end
